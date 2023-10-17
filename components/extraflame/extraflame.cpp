@@ -92,8 +92,6 @@ namespace esphome
 #ifdef USE_EXTRAFLAME_DUMP
         if (this->dump_.current <= this->dump_.end && this->is_dumping())
         {
-          ESP_LOGD(TAG, "Dump 0x%02X", this->dump_.current);
-
           auto request = ExtraflameRequest{
               .command = {this->dump_.memory, this->dump_.current},
               .on_response = [this](uint8_t value, bool success) {
@@ -103,6 +101,7 @@ namespace esphome
                   s1 << this->dump_.data << ",\"0x" << std::hex << static_cast<int>(this->dump_.current)<< "\":";
                   s2 << s1.str() << int(value);
                   this->dump_.data = s2.str();
+                  ESP_LOGD(TAG, "Dump 0x%02X Value 0x%02X", this->dump_.current,this->dump_.data);
                 }
                 if (this->dump_.current == this->dump_.end)
                 {
