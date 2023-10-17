@@ -107,7 +107,7 @@ namespace esphome
                 {
                   this->dump_.data = this->dump_.data + "}";
                   ESP_LOGD(TAG, "Dump complete");
-                  ESP_LOGD(TAG, this->dump_.data);
+                  ESP_LOGD(TAG, c_str(this->dump_.data));
                   for (auto *trigger : this->finish_triggers_){
                     trigger->process(this->dump_.data);
                   }
