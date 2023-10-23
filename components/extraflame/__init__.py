@@ -9,6 +9,7 @@ from .const import (
     MEMORY_ADDRESSES,
     CONF_EXTRAFLAME_ID,
     CONF_ON_DUMP_FINISH,
+    CONF_ON_EACH_VALUE,
     CONF_START,
     CONF_END
 )
