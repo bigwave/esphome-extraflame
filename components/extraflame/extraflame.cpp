@@ -107,7 +107,7 @@ namespace esphome
                   {
                     std::ostringstream s3;
                     s3 << "{\"state\": \"" 
-                       << value
+                       <<  int(value)
                        << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
                        << "\"}}";
                   std::string str = s3.str();
