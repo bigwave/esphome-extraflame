@@ -29,6 +29,7 @@ namespace esphome
     };
 
     class ExtraflameDumpFinishTrigger;
+    class ExtraflameEachValueTrigger;
 #endif
 
     class ExtraflameComponent;
@@ -40,7 +41,9 @@ namespace esphome
       float get_setup_priority() const override { return setup_priority::LATE; }
 
 #ifdef USE_EXTRAFLAME_DUMP
-      void start_dumping(uint8_t memory, uint8_t start, uint8_t end, const std::vector<ExtraflameDumpFinishTrigger *> &finish_triggers);
+      void start_dumping(uint8_t memory, uint8_t start, uint8_t end,
+                         const std::vector<ExtraflameDumpFinishTrigger *> &finish_triggers,
+                          const std::vector<ExtraflameEachValueTrigger *> &each_value_triggers);
       
       bool is_dumping();
 #endif
