@@ -103,6 +103,15 @@ namespace esphome
                   s2 << s1.str() << int(value);
                   this->dump_.data = s2.str();
                   ESP_LOGD(TAG, "Dump 0x%02X Value %03d", this->dump_.current, value);
+                  for (auto *trigger : this->each_value_triggers_)
+                  {
+                    std::ostringstream s3;
+                    s3 << "{\"state\": \"" 
+                       << value
+                       << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
+                       << "\"}}"
+                    trigger->process(s3);
+                  }
                 }
                 if (this->dump_.current == this->dump_.end)
                 {
