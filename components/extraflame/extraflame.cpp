@@ -108,7 +108,7 @@ namespace esphome
                     std::ostringstream s3;
                     s3 << "{\"state\": \"" 
                        <<  int(value)
-                       << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
+                       << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << static_cast<int>(this->dump_.current)
                        << "\"}}";
                   std::string str = s3.str();
                   const char * c = str.c_str();
