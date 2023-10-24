@@ -222,7 +222,7 @@ namespace esphome
 #ifdef USE_EXTRAFLAME_DUMP
     void ExtraflameHub::start_dumping(uint8_t memory, uint8_t start, uint8_t end,
                                       const std::vector<ExtraflameDumpFinishTrigger *> &finish_triggers,
-                                      const std::vector<ExtraflameEachValueTrigger *> &finish_triggers)
+                                      const std::vector<ExtraflameEachValueTrigger *> &each_value_triggers)
     {
       ESP_LOGD(TAG, "Starting to dump config values of 0x%02X", memory);
 
