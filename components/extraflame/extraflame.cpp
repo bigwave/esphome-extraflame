@@ -259,6 +259,7 @@ namespace esphome
             .end = end,
             .data = stringStream.str()};
         this->finish_triggers_ = finish_triggers;
+        this->each_value_triggers = each_value_triggers;
       }
     }
 
