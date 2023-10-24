@@ -110,8 +110,9 @@ namespace esphome
                        << value
                        << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
                        << "\"}}";
+                  const char * c = s3.cstr();
 
-                   ESP_LOGD(TAG, s3.str());
+                   ESP_LOGD(TAG, c);
 
                     trigger->process(s3.str());
                   }
