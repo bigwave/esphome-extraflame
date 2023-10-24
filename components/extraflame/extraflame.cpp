@@ -110,7 +110,7 @@ namespace esphome
                        << value
                        << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
                        << "\"}}";
-                    trigger->process(s3);
+                    trigger->process(s3.str());
                   }
                 }
                 if (this->dump_.current == this->dump_.end)
