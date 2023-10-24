@@ -116,7 +116,10 @@ namespace esphome
 
                    ESP_LOGD(TAG, c);
 
+                   if (int(value)!=0 && int(value)!=255)
+                   {
                     trigger->process(s3.str());
+                   }
                   }
                 }
                 if (this->dump_.current == this->dump_.end)
