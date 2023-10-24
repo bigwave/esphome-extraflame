@@ -109,7 +109,7 @@ namespace esphome
                     s3 << "{\"state\": \"" 
                        << value
                        << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
-                       << "\"}}"
+                       << "\"}}";
                     trigger->process(s3);
                   }
                 }
