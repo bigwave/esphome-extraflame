@@ -94,21 +94,23 @@ namespace esphome
         {
           auto request = ExtraflameRequest{
               .command = {this->dump_.memory, this->dump_.current},
-              .on_response = [this](uint8_t value, bool success) {
+              .on_response = [this](uint8_t value, bool success)
+              {
                 if (success)
                 {
                   std::ostringstream s1, s2;
-                  s1 << this->dump_.data << ",\"0x" << std::hex << static_cast<int>(this->dump_.current)<< "\":";
+                  s1 << this->dump_.data << ",\"0x" << std::hex << static_cast<int>(this->dump_.current) << "\":";
                   s2 << s1.str() << int(value);
                   this->dump_.data = s2.str();
-                  ESP_LOGD(TAG, "Dump 0x%02X Value %03d", this->dump_.current,value);
+                  ESP_LOGD(TAG, "Dump 0x%02X Value %03d", this->dump_.current, value);
                 }
                 if (this->dump_.current == this->dump_.end)
                 {
                   this->dump_.data = this->dump_.data + "}";
                   ESP_LOGD(TAG, "Dump complete");
                   ESP_LOGD(TAG, this->dump_.data.c_str());
-                  for (auto *trigger : this->finish_triggers_){
+                  for (auto *trigger : this->finish_triggers_)
+                  {
                     trigger->process(this->dump_.data);
                   }
                   this->dump_.data = "";
@@ -120,7 +122,7 @@ namespace esphome
               }};
 
           this->send_request_(request);
-          return; //required
+          return; // required
         }
 #endif
         if (!this->request_queue_.empty())
@@ -136,7 +138,8 @@ namespace esphome
     {
       this->status_ = REQUEST_SEND;
       this->request_ = request;
-      this->set_timeout(CURRENT_REQUEST, 1000, [this] {
+      this->set_timeout(CURRENT_REQUEST, 1000, [this]
+                        {
         if (this->request_.command.size() == 2)
         {
           ESP_LOGW(TAG, "No response for given command: 0x%02X 0x%02X", this->request_.command[0],
@@ -152,8 +155,7 @@ namespace esphome
         {
           this->request_.on_response(0x00, false);
         }
-        this->status_ = NO_REQUEST;
-      });
+        this->status_ = NO_REQUEST; });
 
       if (this->request_.command.size() == 2)
       {
@@ -218,7 +220,9 @@ namespace esphome
     }
 
 #ifdef USE_EXTRAFLAME_DUMP
-    void ExtraflameHub::start_dumping(uint8_t memory, uint8_t start, uint8_t end, const std::vector<ExtraflameDumpFinishTrigger *> &finish_triggers)
+    void ExtraflameHub::start_dumping(uint8_t memory, uint8_t start, uint8_t end,
+                                      const std::vector<ExtraflameDumpFinishTrigger *> &finish_triggers,
+                                      const std::vector<ExtraflameEachValueTrigger *> &finish_triggers)
     {
       ESP_LOGD(TAG, "Starting to dump config values of 0x%02X", memory);
 

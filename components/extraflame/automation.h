@@ -94,6 +94,7 @@ namespace esphome
       void set_memory(const uint8_t memory) { this->memory_ = memory; }
 
       void register_finish_trigger(ExtraflameDumpFinishTrigger *trigger) { this->finish_triggers_.push_back(trigger); }
+      void register_each_value_trigger(ExtraflameEachValueTrigger *trigger) { this->each_value_triggers_.push_back(trigger); }
 
       void play_complex(Ts... x) override
       {
@@ -107,7 +108,7 @@ namespace esphome
           return;
         }
 
-        this->parent_->start_dumping(this->memory_, start, end, this->finish_triggers_);
+        this->parent_->start_dumping(this->memory_, start, end, this->finish_triggers_, this->each_value_triggers_);
 
         this->play_next_(x...);
       }
