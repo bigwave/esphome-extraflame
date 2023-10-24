@@ -103,7 +103,7 @@ namespace esphome
                   s2 << s1.str() << int(value);
                   this->dump_.data = s2.str();
                   ESP_LOGD(TAG, "Dump 0x%02X Value %03d", this->dump_.current, value);
-                  for (auto *trigger : this->each_value_triggers_)
+                  for (auto *trigger : this->finish_triggers_)
                   {
                     std::ostringstream s3;
                     s3 << "{\"state\": \"" 
