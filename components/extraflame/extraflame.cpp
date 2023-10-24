@@ -110,7 +110,8 @@ namespace esphome
                        << value
                        << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
                        << "\"}}";
-                  const char* c = s3.str();
+                  std::string str = s3.str();
+                  const char * c = str.c_str();
 
                    ESP_LOGD(TAG, c);
 
