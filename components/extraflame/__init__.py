@@ -25,6 +25,9 @@ ExtraflameDumpAction = extraflame_ns.class_("ExtraflameDumpAction", Action)
 ExtraflameDumpFinishTrigger = extraflame_ns.class_(
     "ExtraflameDumpFinishTrigger", Trigger.template(cg.std_string)
 )
+ExtraflameEachValueTrigger = extraflame_ns.class_(
+    "ExtraflameEachValueTrigger", Trigger.template(cg.std_string)
+)
 ExtraflameIsDumpingCondition = extraflame_ns.class_("ExtraflameIsDumpingCondition", Condition)
 
 is_memory_address = cv.Any(
@@ -104,6 +107,13 @@ async def extraflame_write_to_code(config, action_id, template_arg, args):
                 {
                     cv.GenerateID(CONF_TRIGGER_ID): cv.declare_id(
                         ExtraflameDumpFinishTrigger
+                    ),
+                }
+            ),
+            cv.Required(CONF_ON_EACH_VALUE): automation.validate_automation(
+                {
+                    cv.GenerateID(CONF_TRIGGER_ID): cv.declare_id(
+                        ExtraflameEachValueTrigger
                     ),
                 }
             ),

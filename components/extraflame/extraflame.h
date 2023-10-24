@@ -25,6 +25,7 @@ namespace esphome
       uint8_t current;
       uint8_t end;
       std::string data;
+      std::string value;
     };
 
     class ExtraflameDumpFinishTrigger;
@@ -73,6 +74,7 @@ namespace esphome
 #ifdef USE_EXTRAFLAME_DUMP
       Dump dump_{.memory = 0x00, .current = 0xFF, .end = 0x0, .data = std::string("")};
       std::vector<ExtraflameDumpFinishTrigger *> finish_triggers_;
+      std::vector<ExtraflameEachValueTrigger *> each_value_triggers_;
 #endif
 
       std::vector<ExtraflameRequest> request_queue_;
@@ -107,6 +109,11 @@ namespace esphome
 
 #ifdef USE_EXTRAFLAME_DUMP
     class ExtraflameDumpFinishTrigger : public Trigger<std::string>
+    {
+    public:
+      void process(std::string value) { this->trigger(value); }
+    };
+    class ExtraflameEachValueTrigger : public Trigger<std::string>
     {
     public:
       void process(std::string value) { this->trigger(value); }
