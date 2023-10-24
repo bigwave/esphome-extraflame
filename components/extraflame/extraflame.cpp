@@ -105,7 +105,6 @@ namespace esphome
                   ESP_LOGD(TAG, "Dump 0x%02X Value %03d", this->dump_.current, value);
                   for (auto *trigger : this->each_value_triggers_)
                   {
-                    ESP_LOGD(TAG, "Dump2 0x%02X Value %03d", this->dump_.current, value);
                     std::ostringstream s3;
                     s3 << "{\"state\": \"" 
                        <<  int(value)
@@ -114,7 +113,7 @@ namespace esphome
                   std::string str = s3.str();
                   const char * c = str.c_str();
 
-                   ESP_LOGD(TAG, c);
+                  // ESP_LOGD(TAG, c);
 
                    if (int(value)!=0 && int(value)!=255)
                    {
