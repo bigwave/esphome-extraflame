@@ -138,6 +138,11 @@ async def extraflame_dump_to_code(config, action_id, template_arg, args):
         cg.add(var.register_finish_trigger(trigger))
         await automation.build_automation(trigger, [(cg.std_string, "data")], conf)
 
+    for conf in config.get(CONF_ON_EACH_VALUE, []):
+        trigger = cg.new_Pvariable(conf[CONF_TRIGGER_ID])
+        cg.add(var.register_each_value_trigger(trigger))
+        await automation.build_automation(trigger, [(cg.std_string, "data")], conf)
+
     return var
 
 
