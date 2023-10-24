@@ -111,7 +111,7 @@ namespace esphome
                        << "\", \"attributes\": {\"unit_of_measurement\": \"number\", \"friendly_name\": \"" << this->dump_.current
                        << "\"}}";
 
-                   ESP_LOGD(TAG, s3.str().str());
+                   ESP_LOGD(TAG, s3.str());
 
                     trigger->process(s3.str());
                   }
