@@ -118,6 +118,7 @@ namespace esphome
     protected:
       uint8_t memory_{};
       std::vector<ExtraflameDumpFinishTrigger *> finish_triggers_;
+      std::vector<ExtraflameEachValueTrigger *> each_value_triggers_;
     };
 
 
